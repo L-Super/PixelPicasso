@@ -1,4 +1,5 @@
 # PixelPicasso
+English | [中文](README_zh.md)
 
 The name PixelPicasso (Pixel Picasso) combines the famous artist Pablo Picasso with pixels, suggesting that this program helps users edit their pictures like an artist. You can effortlessly resize images, convert image formats, etc. 
 
