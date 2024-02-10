@@ -17,6 +17,6 @@ Having any problems? Visit our official website for help: [PixelPicasso Official
 
 ## License Agreement
 
-This software is subject to the [License Agreement Name]. Please read the terms and conditions carefully before use.
+This software is subject to the [MIT]. Please read the terms and conditions carefully before use.
 
-Thank you for choosing PixelPicasso, and let's open up unlimited possibilities of image editing together!
+[//]: # (Thank you for choosing PixelPicasso, and let's open up unlimited possibilities of image editing together!)

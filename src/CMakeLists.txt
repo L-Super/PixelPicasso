@@ -16,9 +16,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(QtProjectTemplate main.cpp)
+message(STATUS "Qt version is ${QT_VERSION}")
 
-target_link_libraries(QtProjectTemplate
+add_executable(${PROJECT_NAME} main.cpp)
+
+target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Widgets
