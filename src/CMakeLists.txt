@@ -18,10 +18,14 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
 
 message(STATUS "Qt version is ${QT_VERSION}")
 
+set(WIDGET_SRC widget/MainWindow.cpp widget/MainWindow.h widget/MainWindow.ui)
+
+set(LOGIC_SRC logic/ImageConvertor.cpp logic/ImageConvertor.h)
+
 add_executable(${PROJECT_NAME} main.cpp
-        MainWindow.cpp
-        MainWindow.h
-        MainWindow.ui)
+        ${WIDGET_SRC}
+        ${LOGIC_SRC}
+)
 
 target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
