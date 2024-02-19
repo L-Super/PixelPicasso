@@ -28,20 +28,11 @@ jobs:
             #
             # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
             matrix:
-                os: [ubuntu-latest, ubuntu-20.04]
+                os: [ubuntu-latest]
                 build_type: [Release]
                 cpp_compiler: [g++, clang++]
                 include:
                     - os: ubuntu-latest
-                      c_compiler: gcc
-                      cpp_compiler: g++
-                    - os: ubuntu-latest
-                      c_compiler: clang
-                      cpp_compiler: clang++
-                    - os: ubuntu-20.04
-                      c_compiler: gcc
-                      cpp_compiler: g++
-                    - os: ubuntu-20.04
                       c_compiler: clang
                       cpp_compiler: clang++
                 # exclude:
@@ -88,7 +79,7 @@ jobs:
             fail-fast: false
             matrix:
                 os: [windows-latest]
-                qt_version: [5.15.2, 6.5.0]
+                qt_version: [6.5.0]
                 build_type: [Release]
 
         steps:
