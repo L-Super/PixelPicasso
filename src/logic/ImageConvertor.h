@@ -4,11 +4,19 @@
 
 #pragma once
 
+#include <string>
+namespace pp {
+
+enum class ImageFormat { JPG, PNG, SVG, WEBP, HEIC, ICO };
+
 class ImageConvertor {
 public:
     ImageConvertor();
     ~ImageConvertor();
 
-private:
+    void Convert(const std::string& imagePath, ImageFormat format);
 
+private:
+    ImageFormat ImageFormatAnalyze(const std::string& imagePath);
 };
+}// namespace pp

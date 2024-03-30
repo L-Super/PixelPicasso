@@ -5,11 +5,13 @@ on:
         branches: ["main"]
         paths-ignore:
             - "README.md"
+            - "README_zh.md"
             - "LICENSE"
     pull_request:
         branches: ["main"]
         paths-ignore:
             - "README.md"
+            - "README_zh.md"
             - "LICENSE"
 
 jobs:
@@ -35,13 +37,6 @@ jobs:
                     - os: ubuntu-latest
                       c_compiler: clang
                       cpp_compiler: clang++
-                # exclude:
-                #   - os: windows-latest
-                #     c_compiler: gcc
-                #   - os: windows-latest
-                #     c_compiler: clang
-                #   - os: ubuntu-latest
-                #     c_compiler: cl
 
         steps:
             - name: Checkout Source code
@@ -79,7 +74,7 @@ jobs:
             fail-fast: false
             matrix:
                 os: [windows-latest]
-                qt_version: [6.5.0]
+                qt_version: [6.7.0]
                 build_type: [Release]
 
         steps:
@@ -110,7 +105,7 @@ jobs:
           fail-fast: false
           matrix:
               os: [macOS-latest]
-              qt_version: [5.15.2]
+              qt_version: [6.7.0]
               build_type: [Release]
 
       steps:

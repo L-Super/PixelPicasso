@@ -20,12 +20,15 @@ message(STATUS "Qt version is ${QT_VERSION}")
 
 set(WIDGET_SRC widget/MainWindow.cpp widget/MainWindow.h widget/MainWindow.ui)
 
-set(LOGIC_SRC logic/ImageConvertor.cpp logic/ImageConvertor.h)
+set(LOGIC_SRC logic/ImageConvertor.cpp logic/ImageConvertor.h
+        logic/ImageResize.cpp logic/ImageResize.h)
 
 add_executable(${PROJECT_NAME} main.cpp
         ${WIDGET_SRC}
         ${LOGIC_SRC}
 )
+
+include_directories(${CMAKE_SOURCE_DIR}/third_party)
 
 target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
