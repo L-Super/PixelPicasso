@@ -5,12 +5,14 @@
 #pragma once
 
 #include <string>
+#include "optional"
+
 namespace pp {
 class ImageResize {
 public:
     explicit ImageResize();
     ~ImageResize() = default;
-
+    bool isSupportedFormat(const std::string& imagePath);
     /**
      * resize image
      * @param imagePath input image path

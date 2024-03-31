@@ -30,10 +30,18 @@ add_executable(${PROJECT_NAME} main.cpp
 
 include_directories(${CMAKE_SOURCE_DIR}/third_party)
 
+include(FetchContent)
+FetchContent_Declare(spdlog
+        GIT_REPOSITORY https://github.com/gabime/spdlog.git
+        GIT_TAG v1.13.0
+        DOWNLOAD_EXTRACT_TIMESTAMP true)
+FetchContent_MakeAvailable(spdlog)
+
 target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Widgets
+        spdlog::spdlog_header_only
 )
 
 if (WIN32)
