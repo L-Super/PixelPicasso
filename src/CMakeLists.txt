@@ -18,14 +18,25 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
 
 message(STATUS "Qt version is ${QT_VERSION}")
 
-set(WIDGET_SRC widget/MainWindow.cpp widget/MainWindow.h widget/MainWindow.ui)
+
+set(WIDGET_SRC widget/MainWindow.cpp widget/MainWindow.h widget/MainWindow.ui
+        widget/ImageWidget.cpp
+        widget/ImageWidget.h
+        widget/ImageWidget.ui
+)
+
+set(STYLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/widget/style)
+set(STYLE_SRC ${STYLE_DIR}/DarkStyle.cpp ${STYLE_DIR}/DarkStyle.h
+        ${STYLE_DIR}/LightStyle.cpp ${STYLE_DIR}/LightStyle.h)
 
 set(LOGIC_SRC logic/ImageConvertor.cpp logic/ImageConvertor.h
         logic/ImageResize.cpp logic/ImageResize.h)
 
+
 add_executable(${PROJECT_NAME} main.cpp
         ${WIDGET_SRC}
         ${LOGIC_SRC}
+        ${STYLE_SRC}
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/third_party)
