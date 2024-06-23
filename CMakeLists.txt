@@ -17,5 +17,6 @@ message(STATUS "This application's version is ${VERSION_MAJOR}.${VERSION_MINOR}.
 add_subdirectory(src)
 
 if (BUILD_TEST)
+    enable_testing()
     add_subdirectory(tests)
 endif ()
