@@ -16,7 +16,16 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
         Widgets
         REQUIRED)
 
-message(STATUS "Qt version is ${QT_VERSION}")
+get_target_property(QMakeExecutable Qt${QT_VERSION_MAJOR}::qmake IMPORTED_LOCATION)
+get_filename_component(QtBinDir "${QMakeExecutable}" DIRECTORY)
+find_program(QT_DEPLOY_EXECUTABLE windeployqt macdeployqt HINTS "${QtBinDir}")
+
+message(STATUS "Qt deployment tool: ${QT_DEPLOY_EXECUTABLE}")
+
+if (WIN32 AND MSVC)
+    # Set utf-8 encode for building on MSVC
+    add_compile_options(/utf-8)
+endif ()
 
 add_executable(${PROJECT_NAME} main.cpp)
 add_subdirectory(logic)
@@ -40,16 +49,18 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 if (WIN32)
-    get_target_property(QMakeExecutable Qt${QT_VERSION_MAJOR}::qmake IMPORTED_LOCATION)
-    get_filename_component(QtBinDir "${QMakeExecutable}" DIRECTORY)
-    find_program(QT_DEPLOY_EXECUTABLE windeployqt HINTS "${QtBinDir}")
-
     add_custom_command(TARGET ${PROJECT_NAME}
             POST_BUILD
             # Deploy the Qt Application
             COMMAND ${QT_DEPLOY_EXECUTABLE}
             --no-translations
-            --no-compiler-runtime
-            $<TARGET_FILE:${PROJECT_NAME}>
+            "$<TARGET_FILE:${PROJECT_NAME}>"
+    )
+elseif (APPLE)
+    add_custom_command(TARGET ${PROJECT_NAME}
+            POST_BUILD
+            COMMAND ${QT_DEPLOY_EXECUTABLE}
+            "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>"
+            # -dmg
     )
 endif ()
