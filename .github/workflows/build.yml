@@ -122,28 +122,18 @@ jobs:
             uses: devops-actions/action-get-tag@v1.0.3
             id: tag
             with:
-              default: v0.0.0
+                 default: v0.0.0
       
           - name: Create dmg
             uses: L-Super/create-dmg-actons@v1
             if: startsWith(github.event.ref, 'refs/tags/')
             with:
-              dmg_name: '${{github.event.repository.name}}-${{steps.tag.outputs.tag}}'
-              src_dir: '${{github.workspace}}/build/src/PixelPicasso.app/'
-
-      
-          - name: Upload artifact
-            uses: actions/upload-artifact@v4
-            if: startsWith(github.event.ref, 'refs/tags/')
-            with:
-              name: PixelPicasso
-              path: ${{github.workspace}}/${{github.event.repository.name}}-${{steps.tag.outputs.tag}}.dmg
-              overwrite: true
-              retention-days: 1
+                dmg_name: '${{github.event.repository.name}}-${{steps.tag.outputs.tag}}'
+                src_dir: '${{github.workspace}}/build/src/PixelPicasso.app/'
 
           - name: Release
             uses: softprops/action-gh-release@v2
             if: startsWith(github.event.ref, 'refs/tags/')
             with:
-              files: ./${{github.event.repository.name}}-${{steps.tag.outputs.tag}}.dmg
-              token: ${{ secrets.GITHUB_TOKEN }}
+                files: ./${{github.event.repository.name}}-${{steps.tag.outputs.tag}}.dmg
+                token: ${{ secrets.GITHUB_TOKEN }}
