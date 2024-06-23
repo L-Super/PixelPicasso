@@ -32,6 +32,19 @@ add_subdirectory(logic)
 add_subdirectory(widget)
 add_subdirectory(widget/style)
 
+if (WIN32)
+    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
+    else ()
+        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
+        # Remove the terminal display
+        set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+    endif ()
+elseif (APPLE)
+    # It needs after add_executable
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
+endif ()
+
 include_directories(${CMAKE_SOURCE_DIR}/third_party)
 
 include(FetchContent)
